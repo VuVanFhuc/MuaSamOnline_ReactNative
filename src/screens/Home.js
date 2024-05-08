@@ -29,9 +29,32 @@ const Home = () => {
   // Quản lý trạng thái cho banner tự động
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollViewRef = useRef(null);
+
   const navigation = useNavigation();
+
   const chuyen = () => {
     navigation.navigate("Profile")
+  }
+  const click = (item) => {
+    switch (item.name) {
+      case 'Máy Tính':
+        navigation.navigate('MayTinh');
+        break;
+      case 'Thời Trang':
+        navigation.navigate('ThoiTrang');
+        break;
+      case 'Gia Dụng':
+        navigation.navigate('GiaDung');
+        break;
+      case 'Điện Thoại':
+        navigation.navigate('DienThoai');
+        break;
+      case 'Thực Phẩm':
+        navigation.navigate('ThucPham');
+        break;
+      default:
+        break;
+    }
   }
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,11 +68,26 @@ const Home = () => {
 
   // Quản lý trạng thái cho danh sách sản phẩm
   const [sanPham, setSanPham] = useState([]);
+  const [thoitrang, setthoitrang] = useState([])
   const [isLoading, setIsLoading] = useState(true);
+
+  const fetchDataa = async () => {
+    try {
+      const response = await axios.get('http://192.168.53.103:3001/api1/getListthoitrang');
+      setthoitrang(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Lỗi khi lấy dữ liệu:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataa();
+  }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.0.101:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.53.103:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -66,23 +104,15 @@ const Home = () => {
       {/* THANH TÌM KIẾM Ở ĐÂY  */}
       <View style={styles.header}>
         <Pressable onPress={chuyen}>
-          <Image source={ require('../images/backround.jpg')} style={{ width: 40, height: 40, borderRadius: 30 }} />
+          <Image source={require('../images/backround.jpg')} style={{ width: 40, height: 40, borderRadius: 30 }} />
         </Pressable>
         <TextInput placeholder="Tìm kiếm tại đây" style={styles.searchInput} />
         <Image source={require('../images/mic.png')} style={styles.micIcon} />
       </View>
-
-      {/* THÔNG TIN VỊ TRÍ Ở ĐÂY  */}
-      <View style={styles.locationHeader}>
-        <Image source={require('../images/vitri.png')} style={styles.locationIcon} />
-        <Text style={styles.locationText}>Hải Giang-Hải Hậu -Nam Định</Text>
-        <Image source={require('../images/spinner.png')} style={styles.spinnerIcon} />
-      </View>
-
       {/* DANH SÁCH MENU Ở ĐÂY  */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageList}>
         {listAnh.map((item) => (
-          <Pressable key={item.id}>
+          <Pressable onPress={() => click(item)} key={item.id}>
             <Image source={{ uri: item.anh }} style={styles.listImage} />
             <Text style={styles.imageName}>{item.name}</Text>
           </Pressable>
@@ -108,9 +138,9 @@ const Home = () => {
         </View>
       </View>
 
-      {/* DANH SÁCH SẢN PHẨM Ở ĐÂY  */}
+      {/* SẢN PHẨM LAP TOP Ở ĐÂY  */}
       <View style={styles.productsContainer}>
-        <Text style={styles.productsTitle}>Danh sách sản phẩm</Text>
+        <Text style={styles.productsTitle}>TOP SẢN PHẨM </Text>
         {isLoading ? (
           <Text>Loading...</Text>
         ) : (
@@ -120,23 +150,43 @@ const Home = () => {
             data={sanPham}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
-              <Pressable style={styles.productItem}>
+              <View style={styles.productItem}>
                 <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
                 <Text style={styles.productName}>{item.ten}</Text>
                 <Text style={{ fontStyle: "italic" }}>{item.price}</Text>
-                <View style={{ flexDirection: "row" }}>
+                <Pressable style={{ flexDirection: "row" }}>
                   <Text style={{ fontSize: 15, color: "red" }}>Thêm</Text>
                   <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
-                </View>
-              </Pressable>
+                </Pressable>
+              </View>
             )}
           />
         )}
       </View>
-
-
-
-
+      {/* DANH SÁCH SẢN PHẨM THỜI TRANG Ở ĐÂY  */}
+      <View style={styles.productsContainer}>
+        {isLoading ? (
+          <Text>Loading...</Text>
+        ) : (
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={thoitrang}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => (
+              <View style={styles.productItem}>
+                <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
+                <Text style={styles.productName}>{item.ten}</Text>
+                <Text style={{ fontStyle: "italic" }}>{item.price}</Text>
+                <Pressable style={{ flexDirection: "row" }}>
+                  <Text style={{ fontSize: 15, color: "red" }}>Thêm</Text>
+                  <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
+                </Pressable>
+              </View>
+            )}
+          />
+        )}
+      </View>
 
 
     </ScrollView>

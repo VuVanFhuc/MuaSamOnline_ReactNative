@@ -26,11 +26,11 @@ const Login = () => {
                 <Text style={{ textAlign: "center", lineHeight: 50, fontSize: 20, fontWeight: "bold" }}>Đăng nhập</Text>
             </Pressable>
             <View style={{ flexDirection: "row" }}>
-                <Pressable style={{ width: "34%", height: 50, backgroundColor: "pink", marginLeft: "15%",  marginTop: 15 }} >
-                    <Text style={{ textAlign: "center", lineHeight: 50, fontSize: 20, fontWeight: "bold" }}>FaceBook</Text>
+                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff", marginLeft: "15%",  marginTop: 15 }} >
+                    <Image source={require('../images/facebook.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10 ,marginLeft:50}} />
                 </Pressable>
-                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#d4c1a3",  marginRight: "15%", marginTop: 15 ,marginLeft:"2%"}} >
-                    <Text style={{ textAlign: "center", lineHeight: 50, fontSize: 20, fontWeight: "bold" }}>Google</Text>
+                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff",  marginRight: "15%", marginTop: 15 ,marginLeft:"2%"}} >
+                <Image source={require('../images/google.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10,marginLeft:50 }} />
                 </Pressable>
             </View>
             <View style={{flexDirection:"row"}}>

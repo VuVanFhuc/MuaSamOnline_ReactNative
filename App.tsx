@@ -11,6 +11,11 @@ import Welcome from "./src/screens/Welcome";
 import Login from "./src/screens/Login";
 import Register from "./src/screens/Register";
 import Chat from "./src/screens/Chat";
+import ThoiTrang from "./src/screens/ThoiTrang";
+import MayTinh from "./src/screens/MayTinh";
+import GiaDung from "./src/screens/GiaDung";
+import DienThoai from "./src/screens/DienThoai";
+import ThucPham from "./src/screens/ThucPham";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,10 +41,10 @@ const TabNavigator = () => {
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Chat" component={Chat} />
-      <Tab.Screen name="Cart" component={Cart} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Home" component={Home} options={{headerShown:false}}/>
+      <Tab.Screen name="Chat" component={Chat} options={{headerShown:false}}/>
+      <Tab.Screen name="Cart" component={Cart} options={{headerShown:false}}/>
+      <Tab.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
     </Tab.Navigator>
   );
 };
@@ -55,6 +60,11 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
         <Stack.Screen name="Chat" component={Chat} options={{headerShown:false}}/>
+        <Stack.Screen name="MayTinh" component={MayTinh} options={{headerShown:false}}/>
+        <Stack.Screen name="ThoiTrang" component={ThoiTrang} options={{headerShown:false}}/>
+        <Stack.Screen name="GiaDung" component={GiaDung} options={{headerShown:false}}/>
+        <Stack.Screen name="DienThoai" component={DienThoai} options={{headerShown:false}}/>
+        <Stack.Screen name="ThucPham" component={ThucPham} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -70,3 +80,4 @@ const styles = StyleSheet.create({
     tintColor: 'black',
   },
 });
+

@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <View>
       <Pressable onPress={doianh}>
-        <Image source={ require('../images/backround.jpg')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 20 }} />
+        <Image source={ require('../images/backround.jpg')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 100 }} />
       </Pressable>
 
       <View style={styles.nut}>
