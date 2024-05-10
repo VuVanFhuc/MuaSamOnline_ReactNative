@@ -73,7 +73,7 @@ const Home = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.53.103:3001/api1/getListthoitrang');
+      const response = await axios.get('http://192.168.1.68:3001/api1/getListthoitrang');
       setthoitrang(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -87,7 +87,7 @@ const Home = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.53.103:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.1.68:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {

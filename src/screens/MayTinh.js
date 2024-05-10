@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,11 +7,11 @@ const MayTinh = () => {
   const [sanPham, setSanPham] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const themgiohang = () => {
-
+    Alert.alert('thêm vào giỏ hàng thành công ')
   }
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.53.103:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.1.68:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {
