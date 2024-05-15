@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import Banner from '../component/Banner';
+import BottonAdd from '../component/BottonAdd';
 
 const MayTinh = () => {
   const [sanPham, setSanPham] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const themgiohang = () => {
-    Alert.alert('thêm vào giỏ hàng thành công ')
-  }
+  
   const fetchData = async () => {
     try {
       const response = await axios.get('http://192.168.1.68:3000/api/getListSanPham');
@@ -23,19 +23,7 @@ const MayTinh = () => {
     fetchData();
   }, []);
 
-  const renderProductItems = () => {
-    return sanPham.map((item) => (
-      <View style={styles.productItem} key={item._id}>
-        <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
-        <Text style={styles.productName}>{item.ten}</Text>
-        <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-        <Pressable style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, color: 'red' }}>Thêm</Text>
-          <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
-        </Pressable>
-      </View>
-    ));
-  };
+
 
   const renderProductRows = () => {
     const rows = [];
@@ -50,10 +38,9 @@ const MayTinh = () => {
               <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
               <Text style={styles.productName}>{item.ten}</Text>
               <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-              <Pressable onPress={themgiohang} style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 15, color: 'red' }}>Thêm</Text>
-                <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
-              </Pressable>
+              <View>
+              <BottonAdd item={item} />
+              </View>
             </View>
           ))}
         </View>
@@ -67,6 +54,9 @@ const MayTinh = () => {
 
   return (
     <View style={styles.productsContainer}>
+      <View>
+        <Banner/>
+      </View>
       <Text style={styles.productsTitle}>SẢN PHẨM MÁY TÍNH </Text>
       {isLoading ? (
         <Text>Loading...</Text>

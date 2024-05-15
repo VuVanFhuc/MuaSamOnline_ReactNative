@@ -1,7 +1,9 @@
 import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const Profile = () => {
+  const navigation = useNavigation();
   const doinen = () => {
     Alert.alert("tính năng chưa hoàn thành ")
   }
@@ -9,7 +11,23 @@ const Profile = () => {
     Alert.alert("tính năng chưa hoàn thành ")
   }
   const dangxuat = () => {
-    Alert.alert("tính năng chưa hoàn thành ")
+    Alert.alert(
+      "Xác nhận",
+      "Bạn có muốn đăng xuất?",
+      [
+        {
+          text: "Hủy",
+          onPress: () => console.log("Đăng xuất đã bị hủy"),
+          style: "cancel"
+        },
+        {
+          text: "Đồng ý", onPress: () => {
+            navigation.navigate("Login")
+          }
+        }
+      ]
+    );
+
   }
   const doiphone = () => {
     Alert.alert("Error : bạn không thể đổi tài khoản đã đăng ký ")
@@ -17,10 +35,13 @@ const Profile = () => {
   const doianh = () => {
     Alert.alert("bạn có muốn đổi avatar không ? ")
   }
+  const xemGioHang = () => {
+    navigation.navigate("Cart")
+  }
   return (
     <View>
       <Pressable onPress={doianh}>
-        <Image source={ require('../images/backround.jpg')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 100 }} />
+        <Image source={require('../images/backround.jpg')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 100 }} />
       </Pressable>
 
       <View style={styles.nut}>
@@ -37,7 +58,7 @@ const Profile = () => {
       </View>
       <View style={styles.text}>
         <Image source={require('../images/3.png')} style={{ width: 20, height: 20, marginTop: 10 }} />
-        <Text onPress={dangxuat} style={{ textAlign: "center", marginTop: 10, color: "black", fontWeight: "bold", marginLeft: 20 }}>XEM GIỎ HÀNG   </Text>
+        <Text onPress={xemGioHang} style={{ textAlign: "center", marginTop: 10, color: "black", fontWeight: "bold", marginLeft: 20 }}>XEM GIỎ HÀNG   </Text>
       </View>
       <View style={styles.text}>
         <Image source={require('../images/out.png')} style={{ width: 20, height: 20, marginTop: 10 }} />

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import Banner from '../component/Banner';
+import BottonAdd from '../component/BottonAdd';
 
 const DienThoai = () => {
   const [dienthoai, setdienthoai] = useState([])
@@ -21,19 +23,7 @@ const DienThoai = () => {
     fetchDataa();
   }, []);
 
-  const renderProductItems = () => {
-    return dienthoai.map((item) => (
-      <View style={styles.productItem} key={item._id}>
-        <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
-        <Text style={styles.productName}>{item.ten}</Text>
-        <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-        <Pressable style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, color: 'red' }}>Thêm</Text>
-          <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
-        </Pressable>
-      </View>
-    ));
-  };
+
 
   const renderProductRows = () => {
     const rows = [];
@@ -48,10 +38,9 @@ const DienThoai = () => {
               <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
               <Text style={styles.productName}>{item.ten}</Text>
               <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-              <Pressable style={{ flexDirection: 'row' }}>
-                <Text style={{ fontSize: 15, color: 'red' }}>Thêm</Text>
-                <Image source={require('../images/3.png')} style={{ width: 20, height: 20 }} />
-              </Pressable>
+              <View>
+              <BottonAdd item={item} />
+              </View>
             </View>
           ))}
         </View>
@@ -65,7 +54,10 @@ const DienThoai = () => {
 
   return (
     <View style={styles.productsContainer}>
-      <Text style={styles.productsTitle}>SẢN PHẨM THỜI TRANG </Text>
+      <View>
+        <Banner/>
+      </View>
+      <Text style={styles.productsTitle}>SẢN PHẨM ĐIỆN THOẠI </Text>
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
