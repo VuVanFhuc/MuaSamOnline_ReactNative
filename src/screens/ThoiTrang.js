@@ -11,7 +11,7 @@ const ThoiTrang = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.1.68:3001/api1/getListthoitrang');
+      const response = await axios.get('http://192.168.53.100:3001/api1/getListthoitrang');
       setthoitrang(response.data);
       setIsLoading(false);
     } catch (error) {

@@ -11,7 +11,7 @@ const MayTinh = () => {
   
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.1.68:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {

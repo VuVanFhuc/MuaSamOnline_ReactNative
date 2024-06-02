@@ -44,12 +44,11 @@ const Home = () => {
   };
 
   const [sanPham, setSanPham] = useState([]);
-  const [thoitrang, setthoitrang] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchSanPham = async () => {
     try {
-      const response = await axios.get('http://192.168.1.68:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -57,19 +56,10 @@ const Home = () => {
     }
   };
 
-  const fetchThoitrang = async () => {
-    try {
-      const response = await axios.get('http://192.168.1.68:3001/api1/getListthoitrang');
-      setthoitrang(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Lỗi khi lấy dữ liệu:', error);
-    }
-  };
+
 
   useEffect(() => {
     fetchSanPham();
-    fetchThoitrang();
   }, []);
 
   return (
@@ -121,29 +111,6 @@ const Home = () => {
         )}
       </View>
 
-      {/* Danh sách sản phẩm thời trang */}
-      <View style={styles.productsContainer}>
-        {isLoading ? (
-          <Text>Loading...</Text>
-        ) : (
-          <FlatList
-            horizontal={true}
-            showsHorizontal ScrollIndicator={false}
-            data={thoitrang}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <View style={styles.productItem}>
-                <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
-                <Text style={styles.productName}>{item.ten}</Text>
-                <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-               <View>
-                <BottonAdd/>
-               </View>
-              </View>
-            )}
-          />
-        )}
-      </View>
     </ScrollView>
   );
 };

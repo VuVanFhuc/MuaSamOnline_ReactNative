@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
 import { useSelector } from 'react-redux';
-
+import BottonDelete from '../component/BottonDelete';
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
 
@@ -9,7 +9,7 @@ const Cart = () => {
     if (!item || !item.hinhanh || !item.ten || !item.price) {
       return (
         <View style={styles.item}>
-          <Text style={styles.errorText}>Thông tin sản phẩm không đầy đủ</Text>
+          <Text style={styles.errorText}>Error : Thông tin sản phẩm không đầy đủ</Text>
         </View>
       );
     }
@@ -25,7 +25,7 @@ const Cart = () => {
           <Text style={{ fontStyle: 'italic', marginLeft: 16 }}>{item.price}</Text>
           <View style={{ flexDirection: "row", padding: 10 }}>
             <Text style={{ margin: 10 ,color:"red",fontSize:20}}>Buy</Text>
-            <Text style={{ margin: 10,color:"green",fontSize:20}}>Delete</Text>
+            <BottonDelete item={item} />
           </View>
         </View>
 
@@ -35,6 +35,7 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={{textAlign:"center",fontWeight:"bold",fontSize:20}}>Giỏ Hàng Của Bạn</Text>
       <FlatList
         data={cartItems}
         keyExtractor={(_, index) => index.toString()}

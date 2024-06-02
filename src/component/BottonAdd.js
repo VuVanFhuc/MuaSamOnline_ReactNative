@@ -8,7 +8,7 @@ const BottonAdd = ({ item }) => {
 
   const clickadd = () => {
     dispatch(addItemToCart(item)); 
-    Alert.alert("Thêm vào giỏ hàng thành công");
+    Alert.alert("Thêm sản phẩm  vào giỏ hàng thành công");
   };
 
   return (
