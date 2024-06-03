@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
 import { useSelector } from 'react-redux';
 import BottonDelete from '../component/BottonDelete';
+import BottonBuy from '../component/BottonBuy';
+import ProductModal from '../component/ProductModal';
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
 
@@ -24,7 +26,7 @@ const Cart = () => {
           <Text style={styles.productName}>{item.ten}</Text>
           <Text style={{ fontStyle: 'italic', marginLeft: 16 }}>{item.price}</Text>
           <View style={{ flexDirection: "row", padding: 10 }}>
-            <Text style={{ margin: 10 ,color:"red",fontSize:20}}>Buy</Text>
+            <BottonBuy item={item}/>
             <BottonDelete item={item} />
           </View>
         </View>
@@ -41,6 +43,7 @@ const Cart = () => {
         keyExtractor={(_, index) => index.toString()}
         renderItem={renderItem}
       />
+      <ProductModal/>
     </View>
   );
 };

@@ -23,7 +23,7 @@ export default BottonDelete;
 const styles = StyleSheet.create({
   deleteText: {
     margin: 10,
-    color: "green",
+    color: "red",
     fontSize: 20
   },
 });

@@ -1,15 +1,29 @@
-import { Image, StyleSheet, Text, View, Pressable, TextInput, FlatList, KeyboardAvoidingView } from 'react-native'
-import React from 'react'
+import { Image, StyleSheet, Text, View, Pressable, TextInput, FlatList, KeyboardAvoidingView, Platform } from 'react-native'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 const Chat = () => {
   const navigation = useNavigation();
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+
   const chuyen = () => {
     navigation.navigate("Profile")
   }
 
+  const sendMessage = () => {
+    if (message.trim()) {
+      setMessages([...messages, { id: messages.length.toString(), text: message }]);
+      setMessage('');
+    }
+  }
+
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+    >
       <View style={{ flex: 1 }}>
         {/* PHẦN ĐẦU  */}
         <View style={styles.phandau}>
@@ -23,12 +37,27 @@ const Chat = () => {
           </View>
         </View>
         {/* HIỂN THỊ NỘI DUNG TIN NHẮN Ở ĐÂY  */}
-        <FlatList style={styles.noidung}>
-
-        </FlatList>
+        <FlatList
+          style={styles.noidung}
+          data={messages}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.message}>
+              <Text>{item.text}</Text>
+            </View>
+          )}
+        />
         <View style={styles.nhaptinnhan}>
-          <TextInput placeholder='nhập tin nhắn ở đây ' style={{ height: 50, width: "85%", backgroundColor: "#aaaa", borderRadius: 20 }} />
-          <Image source={require('../images/send.png')} style={{ width: 40, margin: 7, height: 40, borderRadius: 30 }} />
+          <TextInput
+            placeholder='nhập tin nhắn ở đây'
+            style={{ height: 50, width: "85%", backgroundColor: "#aaaa", borderRadius: 20, paddingHorizontal: 10 }}
+            value={message}
+            onChangeText={setMessage}
+            onSubmitEditing={sendMessage}
+          />
+          <Pressable onPress={sendMessage}>
+            <Image source={require('../images/send.png')} style={{ width: 40, margin: 7, height: 40, borderRadius: 30 }} />
+          </Pressable>
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -45,11 +74,17 @@ const styles = StyleSheet.create({
   },
   nhaptinnhan: {
     flexDirection: "row",
-    marginTop: 10,
-    marginLeft: 10
+    alignItems: 'center',
+    padding: 10
   },
   noidung: {
-    width: "100%",
-    height: 530
+    flex: 1
+  },
+  message: {
+    padding: 10,
+    marginVertical: 5,
+    backgroundColor: '#e1e1e1',
+    borderRadius: 5,
+    marginHorizontal: 10
   }
 })
