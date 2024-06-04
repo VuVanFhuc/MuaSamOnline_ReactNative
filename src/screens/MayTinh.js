@@ -11,7 +11,7 @@ const MayTinh = () => {
   
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
+      const response = await axios.get('http://192.168.55.104:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -76,10 +76,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   productsTitle: {
+    textShadowColor: '#000',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 3,
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#66cfff',
+    color: '#f38020',
     textAlign: "center"
   },
   productRow: {

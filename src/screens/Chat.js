@@ -10,6 +10,9 @@ const Chat = () => {
   const chuyen = () => {
     navigation.navigate("Profile")
   }
+  const back = () => {
+    navigation.goBack()
+  }
 
   const sendMessage = () => {
     if (message.trim()) {
@@ -27,9 +30,12 @@ const Chat = () => {
       <View style={{ flex: 1 }}>
         {/* PHẦN ĐẦU  */}
         <View style={styles.phandau}>
-          <Image source={require('../images/back.png')} style={{ width: 40, height: 40 }} />
+          <Pressable onPress={back}>
+            <Image source={require('../images/back.png')} style={{ width: 40, height: 40 }} />
+          </Pressable>
+
           <Pressable onPress={chuyen}>
-            <Image source={require('../images/backround.jpg')} style={{ width: 40, height: 40, borderRadius: 30 }} />
+            <Image source={require('../images/avatar.png')} style={{ width: 40, height: 40, borderRadius: 30 }} />
           </Pressable>
           <View>
             <Text style={{ fontWeight: "bold", marginLeft: 10 }}>phucvvph34858@fpt.edu.vn</Text>

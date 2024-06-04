@@ -18,7 +18,7 @@ import MayTinh from "./src/screens/MayTinh";
 import GiaDung from "./src/screens/GiaDung";
 import DienThoai from "./src/screens/DienThoai";
 import ThucPham from "./src/screens/ThucPham";
-
+import Video from "./src/screens/Video";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -30,9 +30,9 @@ const TabNavigator = () => {
           if (route.name === "Home") {
             console.log(" icon Home ");
             return <Image style={styles.icon} source={require('./src/images/1.png')} />;
-          } else if (route.name === "Chat") {
-            console.log(" icon Chat ");
-            return <Image style={styles.icon} source={require('./src/images/botchat.png')} />;
+          } else if (route.name === "Video") {
+            console.log(" icon Video ");
+            return <Image style={styles.icon} source={require('./src/images/video.png')} />;
           } else if (route.name === "Cart") {
             console.log(" icon Cart ");
             return <Image style={styles.icon} source={require('./src/images/3.png')} />;
@@ -44,7 +44,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+      <Tab.Screen name="Video" component={Video} options={{ headerShown: false }} />
       <Tab.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
     </Tab.Navigator>
@@ -68,6 +68,7 @@ const App = () => {
           <Stack.Screen name="GiaDung" component={GiaDung} options={{ headerShown: false }} />
           <Stack.Screen name="DienThoai" component={DienThoai} options={{ headerShown: false }} />
           <Stack.Screen name="ThucPham" component={ThucPham} options={{ headerShown: false }} />
+          <Stack.Screen name="Video" component={Video} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

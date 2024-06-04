@@ -17,8 +17,8 @@ const Home = () => {
 
   const navigation = useNavigation();
 
-  const chuyen = () => {
-    navigation.navigate("Profile");
+  const tinnhan = () => {
+    navigation.navigate("Chat");
   };
 
   const click = (item) => {
@@ -48,31 +48,59 @@ const Home = () => {
 
   const fetchSanPham = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
-      setSanPham(response.data);
+      const response = await axios.get('http://192.168.55.104:3000/api/getListSanPham');
+      const responsee = await axios.get('http://192.168.55.104:3001/api1/getListthoitrang');
+      const combinedProducts = [...response.data, ...responsee.data];
+      setSanPham(combinedProducts);
       setIsLoading(false);
     } catch (error) {
       console.error('Lỗi khi lấy dữ liệu:', error);
     }
   };
 
-
-
   useEffect(() => {
     fetchSanPham();
   }, []);
+
+  const renderProductRows = () => {
+    const rows = [];
+    const itemsPerRow = 2;
+
+    for (let i = 0; i < sanPham.length; i += itemsPerRow) {
+      const rowItems = sanPham.slice(i, i + itemsPerRow);
+      const row = (
+        <View style={styles.productRow} key={`row_${i}`}>
+          {rowItems.map((item) => (
+            <View style={styles.productItem} key={item._id}>
+              <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
+              <Text style={styles.productName}>{item.ten}</Text>
+              <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
+              <View>
+                <BottonAdd item={item} />
+              </View>
+            </View>
+          ))}
+        </View>
+      );
+      rows.push(row);
+    }
+
+    return rows;
+  };
 
   return (
     <ScrollView>
       {/* Thanh tìm kiếm */}
       <View style={styles.header}>
-        <Pressable onPress={chuyen}>
-          <Image source={require('../images/backround.jpg')} style={{ width: 40, height: 40, borderRadius: 30 }} />
-        </Pressable>
         <TextInput placeholder="Tìm kiếm tại đây" style={styles.searchInput} />
-        <Image source={require('../images/mic.png')} style={styles.micIcon} />
+        <Pressable onPress={tinnhan}>
+          <Image source={require('../images/botchat.png')} style={styles.micIcon} />
+        </Pressable>
       </View>
-
+      {/* BANNER TỰ ĐỘNG Ở ĐÂY */}
+      <View>
+        <Banner />
+      </View>
       {/* Danh sách menu */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageList}>
         {listAnh.map((item) => (
@@ -82,35 +110,18 @@ const Home = () => {
           </Pressable>
         ))}
       </ScrollView>
-      {/* BANNER TỰ ĐỘNG Ở ĐÂY */}
-      <View>
-        <Banner/>
-      </View>
-      {/* Sản phẩm máy tính */}
+
+      {/* Sản phẩm */}
       <View style={styles.productsContainer}>
         <Text style={styles.productsTitle}>Top Sản Phẩm</Text>
         {isLoading ? (
           <Text>Loading...</Text>
         ) : (
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={sanPham}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <View style={styles.productItem}>
-                <Image source={{ uri: item.hinhanh }} style={styles.productImage} />
-                <Text style={styles.productName}>{item.ten}</Text>
-                <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
-                <View>
-                <BottonAdd item={item} />
-                </View>
-              </View>
-            )}
-          />
+          <View>
+            {renderProductRows()}
+          </View>
         )}
       </View>
-
     </ScrollView>
   );
 };
@@ -121,6 +132,7 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor:"#f38020"
   },
   searchInput: {
     flex: 1,
@@ -132,6 +144,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 10,
+    
   },
   imageList: {
     marginTop: 10,
@@ -153,13 +166,21 @@ const styles = StyleSheet.create({
   productsTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#66cfff',
+    color: '#f38020',
+    marginBottom: 10,
+    textAlign: 'center',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 3
+  },
+  productRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 10,
   },
   productItem: {
     alignItems: 'center',
-    marginRight: 10,
-    width: 200,
+    width: '45%',
     height: 200,
   },
   productImage: {

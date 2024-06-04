@@ -41,12 +41,12 @@ const Profile = () => {
   return (
     <View>
       <Pressable onPress={doianh}>
-        <Image source={require('../images/backround.jpg')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 100 }} />
+        <Image source={require('../images/avatar.png')} style={{ width: 100, height: 100, borderRadius: 100, marginLeft: 150, marginTop: 100 }} />
       </Pressable>
 
       <View style={styles.nut}>
-        <Image source={require('../images/toi.png')} style={{ width: 20, height: 20, marginTop: 10 }} />
-        <Text onPress={doinen} style={{ textAlign: "center", marginTop: 10, color: "black", fontWeight: "bold", marginLeft: 20 }}>CHẾ ĐỘ BAN ĐÊM </Text>
+        <Image source={require('../images/vitri.png')} style={{ width: 20, height: 20, marginTop: 10 }} />
+        <Text onPress={doinen} style={{ textAlign: "center", marginTop: 10, color: "black", fontWeight: "bold", marginLeft: 20 }}>THIẾT LẬP VỊ TRÍ </Text>
       </View>
       <View style={styles.text}>
         <Image source={require('../images/phone.png')} style={{ width: 20, height: 20, marginTop: 10 }} />
@@ -72,7 +72,7 @@ export default Profile
 
 const styles = StyleSheet.create({
   text: {
-    backgroundColor: "#8bc6f0",
+    backgroundColor: "#f38020",
     width: 300,
     height: 50,
     borderRadius: 10,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   nut: {
-    backgroundColor: "#8bc6f0",
+    backgroundColor: "#f38020",
     width: 300,
     height: 50,
     borderRadius: 10,

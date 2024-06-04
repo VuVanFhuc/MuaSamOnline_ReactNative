@@ -26,7 +26,7 @@ const Cart = () => {
           <Text style={styles.productName}>{item.ten}</Text>
           <Text style={{ fontStyle: 'italic', marginLeft: 16 }}>{item.price}</Text>
           <View style={{ flexDirection: "row", padding: 10 }}>
-            <BottonBuy item={item}/>
+            <BottonBuy item={item} />
             <BottonDelete item={item} />
           </View>
         </View>
@@ -37,13 +37,22 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{textAlign:"center",fontWeight:"bold",fontSize:20}}>Giỏ Hàng Của Bạn</Text>
+      <Text style={{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#f38020',
+        marginBottom: 10,
+        textAlign: 'center',
+        textShadowColor: '#000',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 3
+      }}>Giỏ Hàng Của Bạn</Text>
       <FlatList
         data={cartItems}
         keyExtractor={(_, index) => index.toString()}
         renderItem={renderItem}
       />
-      <ProductModal/>
+      <ProductModal />
     </View>
   );
 };

@@ -12,7 +12,7 @@ const BottonBuy = ({ item }) => {
 
   return (
     <Pressable onPress={clickBuy}>
-      <Text style={styles.buyText}>Buy</Text>
+      <Text style={styles.buyText}>Chi tiết</Text>
     </Pressable>
   );
 };
@@ -22,7 +22,7 @@ export default BottonBuy;
 const styles = StyleSheet.create({
   buyText: {
     margin: 10,
-    color: "green",
+    color: "#f38020",
     fontSize: 20
   },
 });

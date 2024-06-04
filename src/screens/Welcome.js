@@ -17,7 +17,7 @@ const Welcome = () => {
 
     return (
         <View>
-            <Image source={require('../images/backround.jpg')} style={styles.anhnen}/>
+            <Image source={require('../images/wel.jpg')} style={styles.anhnen}/>
         </View>
     );
 }

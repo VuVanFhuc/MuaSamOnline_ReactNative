@@ -6,36 +6,97 @@ import Register from './Register';
 
 const Login = () => {
     const navigation = useNavigation();
-    const dk =()=>{
+    const dk = () => {
         navigation.navigate("Register")
     }
-    const click =()=>{
+    const click = () => {
         navigation.navigate("Home")
     }
 
     return (
         <View >
-            
-            <Image source={require('../images/backround.jpg')} style={styles.anhlogo} />
-            <Text style={{ color: "#8bc6f0", fontWeight: "bold", fontSize: 50, textAlign: "center", margin: 30 }}>Login</Text>
 
-            <TextInput placeholder='Nhập số điện thoại ' style={{ width: "70%", height: 50, backgroundColor: "#8bc6f0", marginLeft: "15%", marginRight: "15%" }} />
-            <TextInput placeholder='Nhập mật khẩu  ' style={{ width: "70%", height: 50, backgroundColor: "#8bc6f0", marginLeft: "15%", marginRight: "15%", marginTop: 15 }} />
+            <Image source={require('../images/avatar.png')} style={styles.anhlogo} />
+
+            <Text style={{
+                color: "#f38020",
+                fontWeight: "bold",
+                fontSize: 50,
+                textAlign: "center",
+                margin: 30,
+                textShadowColor: '#000', // Màu bóng
+                textShadowOffset: { width: 2, height: 2 }, // Độ lệch bóng
+                textShadowRadius: 3 // Bán kính bóng
+            }}>
+                Login
+            </Text>
+            <TextInput placeholder='Nhập số điện thoại ' style={{
+                width: "70%",
+                height: 50,
+                backgroundColor: "#f38020",
+                marginLeft: "15%",
+                marginRight: "15%",
+                marginTop: 15,
+                borderRadius: 25,
+                justifyContent: 'center',
+                alignItems: 'center',
+                elevation: 5,
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3,
+                shadowRadius: 2
+            }} />
+            <TextInput placeholder='Nhập mật khẩu  ' style={{
+                width: "70%",
+                height: 50,
+                backgroundColor: "#f38020",
+                marginLeft: "15%",
+                marginRight: "15%",
+                marginTop: 15,
+                borderRadius: 25,
+                justifyContent: 'center',
+                alignItems: 'center',
+                elevation: 5,
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3,
+                shadowRadius: 2
+            }} />
             {/* NÚT ĐĂNG NHẬP Ở ĐÂY */}
-            <Pressable style={{ width: "70%", height: 50, backgroundColor: "#8bc6f0", marginLeft: "15%", marginRight: "15%", marginTop: 15 }} onPress={click}>
-                <Text style={{ textAlign: "center", lineHeight: 50, fontSize: 20, fontWeight: "bold" }}>Đăng nhập</Text>
+            <Pressable style={{
+                width: "70%",
+                height: 50,
+                backgroundColor: "#f38020",
+                marginLeft: "15%",
+                marginRight: "15%",
+                marginTop: 15,
+                borderRadius: 25,
+                justifyContent: 'center',
+                alignItems: 'center',
+                elevation: 5,
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3,
+                shadowRadius: 2
+            }} onPress={click}>
+                <Text style={{
+                    textAlign: "center",
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    color: "#fff",
+                }}>Đăng nhập</Text>
             </Pressable>
             <View style={{ flexDirection: "row" }}>
-                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff", marginLeft: "15%",  marginTop: 15 }} >
-                    <Image source={require('../images/facebook.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10 ,marginLeft:50}} />
+                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff", marginLeft: "15%", marginTop: 15, borderRadius: 20 }} >
+                    <Image source={require('../images/facebook.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10, marginLeft: 50 }} />
                 </Pressable>
-                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff",  marginRight: "15%", marginTop: 15 ,marginLeft:"2%"}} >
-                <Image source={require('../images/google.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10,marginLeft:50 }} />
+                <Pressable style={{ width: "34%", height: 50, backgroundColor: "#fff", marginRight: "15%", marginTop: 15, marginLeft: "2%", borderRadius: 20 }} >
+                    <Image source={require('../images/google.png')} style={{ width: 30, height: 30, marginLeft: 10, marginTop: 10, marginLeft: 50 }} />
                 </Pressable>
             </View>
-            <View style={{flexDirection:"row"}}>
-            <Text style={{ color: "red",   marginTop: 45,marginLeft:"18%" }}>Bạn đã có tài khoản chưa ?</Text>
-            <Text style={{ color: "#8bc6f0",   marginTop: 40,marginLeft:10,fontWeight:"bold",fontSize:20 }} onPress={dk}>Đăng Ký</Text>
+            <View style={{ flexDirection: "row" }}>
+                <Text style={{ color: "red", marginTop: 45, marginLeft: "18%" }}>Bạn đã có tài khoản chưa ?</Text>
+                <Text style={{ color: "#f38020", marginTop: 40, marginLeft: 10, fontWeight: "bold", fontSize: 20 }} onPress={dk}>Đăng Ký</Text>
             </View>
         </View>
     );
