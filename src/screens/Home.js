@@ -48,8 +48,8 @@ const Home = () => {
 
   const fetchSanPham = async () => {
     try {
-      const response = await axios.get('http://192.168.55.104:3000/api/getListSanPham');
-      const responsee = await axios.get('http://192.168.55.104:3001/api1/getListthoitrang');
+      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
+      const responsee = await axios.get('http://192.168.53.100:3001/api1/getListthoitrang');
       const combinedProducts = [...response.data, ...responsee.data];
       setSanPham(combinedProducts);
       setIsLoading(false);

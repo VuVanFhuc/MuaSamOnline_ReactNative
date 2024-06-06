@@ -11,7 +11,7 @@ const DienThoai = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.55.104:3003/api3/getListdienthoai');
+      const response = await axios.get('http://192.168.53.100:3003/api3/getListdienthoai');
       setdienthoai(response.data);
       setIsLoading(false);
     } catch (error) {

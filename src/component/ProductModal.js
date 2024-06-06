@@ -1,209 +1,5 @@
-// import React, { useState, useEffect } from 'react';
-// import { View, Text, Image, StyleSheet, Modal, Pressable, Alert, TextInput } from 'react-native';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { clearSelectedItem } from './cartSlice';
-
-// const ProductModal = () => {
-//     const dispatch = useDispatch();
-//     const selectedItem = useSelector((state) => state.cart.selectedItem);
-//     const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery');
-//     const [quantity, setQuantity] = useState(1);
-//     const [totalPrice, setTotalPrice] = useState(selectedItem ? selectedItem.price : 0);
-
-//     useEffect(() => {
-//         if (selectedItem) {
-//             setTotalPrice(quantity * selectedItem.price);
-//         }
-//     }, [quantity, selectedItem]);
-
-//     if (!selectedItem) return null;
-
-//     const handleOrder = () => {
-//         dispatch(clearSelectedItem());
-//         Alert.alert("Order Success", `Payment Method: ${paymentMethod}`);
-//     };
-
-//     const handleQuantityChange = (text) => {
-//         const newQuantity = Number(text);
-//         if (newQuantity >= 1) {
-//             setQuantity(newQuantity);
-//         }
-//     };
-
-//     const incrementQuantity = () => {
-//         setQuantity(prevQuantity => prevQuantity + 1);
-//     };
-
-//     const decrementQuantity = () => {
-//         if (quantity > 1) {
-//             setQuantity(prevQuantity => prevQuantity - 1);
-//         }
-//     };
-
-//     return (
-//         <Modal
-//             transparent={true}
-//             animationType="slide"
-//             visible={!!selectedItem}
-//             onRequestClose={() => dispatch(clearSelectedItem())}
-//         >
-//             <View style={styles.modalBackground}>
-//                 <View style={styles.modalContainer}>
-//                     <Image source={{ uri: selectedItem.hinhanh }} style={styles.productImage} />
-//                     <Text style={styles.productName}>{selectedItem.ten}</Text>
-//                     <Text style={styles.productPrice}>{`Giá: ${selectedItem.price}`}</Text>
-//                     <Text style={styles.paymentMethodLabel}>Số lượng:</Text>
-//                     <View style={styles.quantityContainer}>
-//                         <Pressable style={styles.quantityButton} onPress={decrementQuantity}>
-//                             <Text style={styles.quantityButtonText}>-</Text>
-//                         </Pressable>
-//                         <TextInput
-//                             style={styles.quantityInput}
-//                             keyboardType="numeric"
-//                             value={String(quantity)}
-//                             onChangeText={handleQuantityChange}
-//                         />
-//                         <Pressable style={styles.quantityButton} onPress={incrementQuantity}>
-//                             <Text style={styles.quantityButtonText}>+</Text>
-//                         </Pressable>
-//                     </View>
-//                     <Text style={styles.totalPrice}>{`Thành tiền: ${totalPrice}`}</Text>
-//                     <Text style={styles.paymentMethodLabel}>Phương thức thanh toán:</Text>
-//                     <View style={styles.radioContainer}>
-//                         <View style={styles.radioButton}>
-//                             <Pressable onPress={() => setPaymentMethod('Cash on Delivery')}>
-//                                 <View style={paymentMethod === 'Cash on Delivery' ? styles.radioSelected : styles.radioUnselected} />
-//                             </Pressable>
-//                             <Text style={styles.radioText}>Cash on Delivery</Text>
-//                         </View>
-//                         <View style={styles.radioButton}>
-//                             <Pressable onPress={() => setPaymentMethod('Pay Now')}>
-//                                 <View style={paymentMethod === 'Pay Now' ? styles.radioSelected : styles.radioUnselected} />
-//                             </Pressable>
-//                             <Text style={styles.radioText}>Pay Now</Text>
-//                         </View>
-//                     </View>
-
-//                     <Pressable
-//                         style={styles.orderButton}
-//                         onPress={handleOrder}
-//                     >
-//                         <Text style={styles.orderButtonText}>Đặt hàng</Text>
-//                     </Pressable>
-//                 </View>
-//             </View>
-//         </Modal>
-//     );
-// };
-
-// const styles = StyleSheet.create({
-//     modalBackground: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         backgroundColor: 'rgba(0,0,0,0.5)',
-//     },
-//     modalContainer: {
-//         width: "90%",
-//         height: "90%",
-//         padding: 20,
-//         backgroundColor: 'white',
-//         borderRadius: 10,
-//         alignItems: 'center',
-//     },
-//     productImage: {
-//         width: 150,
-//         height: 120,
-//         marginBottom: 10,
-//     },
-//     productName: {
-//         fontSize: 18,
-//         fontWeight: 'bold',
-//         marginBottom: 10,
-//     },
-//     productPrice: {
-//         fontSize: 16,
-//         marginBottom: 10,
-//     },
-//     paymentMethodLabel: {
-//         fontSize: 16,
-//         marginBottom: 10,
-//         fontWeight: "bold",
-//         fontStyle: "italic",
-//         color: "pink"
-//     },
-//     quantityContainer: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         marginBottom: 10,
-//     },
-//     quantityButton: {
-//         width: 40,
-//         height: 40,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         borderWidth: 1,
-//         borderColor: 'gray',
-//         borderRadius: 5,
-//         marginHorizontal: 5,
-//     },
-//     quantityButtonText: {
-//         fontSize: 20,
-//         fontWeight: 'bold',
-//     },
-//     quantityInput: {
-//         width: 60,
-//         height: 40,
-//         borderColor: 'gray',
-//         borderWidth: 1,
-//         borderRadius: 5,
-//         textAlign: 'center',
-//         fontSize: 16,
-//     },
-//     totalPrice: {
-//         fontSize: 16,
-//         marginBottom: 20,
-//     },
-//     radioContainer: {
-//         marginBottom: 20,
-//     },
-//     radioButton: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         marginBottom: 10,
-//     },
-//     radioUnselected: {
-//         width: 20,
-//         height: 20,
-//         borderRadius: 10,
-//         borderWidth: 1,
-//         borderColor: '#000',
-//         marginRight: 10,
-//     },
-//     radioSelected: {
-//         width: 20,
-//         height: 20,
-//         borderRadius: 10,
-//         backgroundColor: '#000',
-//         marginRight: 10,
-//     },
-//     radioText: {
-//         fontSize: 16,
-//     },
-//     orderButton: {
-//         backgroundColor: 'green',
-//         padding: 10,
-//         borderRadius: 5,
-//     },
-//     orderButtonText: {
-//         color: 'white',
-//         fontSize: 16,
-//     },
-// });
-
-// export default ProductModal;
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Modal, Pressable, Alert, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, Modal, Pressable, Alert, TextInput, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSelectedItem } from './cartSlice';
 
@@ -225,6 +21,7 @@ const ProductModal = () => {
     const handleOrder = () => {
         dispatch(clearSelectedItem());
         Alert.alert("Order Success", `Payment Method: ${paymentMethod}`);
+
     };
 
     const handleQuantityChange = (text) => {
@@ -259,8 +56,10 @@ const ProductModal = () => {
                 <View style={styles.modalContainer}>
                     <Image source={{ uri: selectedItem.hinhanh }} style={styles.productImage} />
                     <Text style={styles.productName}>{selectedItem.ten}</Text>
-                    <Text style={styles.productPrice}>{`Giá: ${selectedItem.price}`}</Text>
-                    
+                    <Text style={styles.productPrice}>{`Giá: ${selectedItem.price}`}VND</Text>
+                    <ScrollView>
+                        <Text style={styles.productName}>Mô tả : {selectedItem.mota}</Text>
+                    </ScrollView>
                     <Text style={styles.paymentMethodLabel}>Phương thức thanh toán:</Text>
                     <View style={styles.radioContainer}>
                         <View style={styles.radioButton}>
@@ -274,9 +73,10 @@ const ProductModal = () => {
                                 <View style={paymentMethod === 'Pay Now' ? styles.radioSelected : styles.radioUnselected} />
                             </Pressable>
                             <Text style={styles.radioText}>Pay Now</Text>
+
                         </View>
                     </View>
-                    
+
                     <Text style={styles.paymentMethodLabel1}>Số lượng:</Text>
                     <View style={styles.quantityContainer}>
                         <Pressable style={styles.quantityButton} onPress={decrementQuantity}>
@@ -292,7 +92,7 @@ const ProductModal = () => {
                             <Text style={styles.quantityButtonText}>+</Text>
                         </Pressable>
                     </View>
-                    <Text style={styles.totalPrice}>{`Tổng tiền: ${totalPrice}`}</Text>
+                    <Text style={styles.totalPrice}>{`Tổng tiền: ${totalPrice}`}VND</Text>
                     <View style={{ width: "100%", height: 1, backgroundColor: "#f38020" }} />
                     <View style={{ flexDirection: "row" }}>
                         <Pressable
@@ -308,6 +108,7 @@ const ProductModal = () => {
                             <Text style={styles.orderButtonText}>Đặt hàng</Text>
                         </Pressable>
                     </View>
+                    
 
                 </View>
             </View>

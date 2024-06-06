@@ -11,7 +11,7 @@ const ThucPham = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.55.104:3004/api4/getListthucpham');
+      const response = await axios.get('http://192.168.53.100:3004/api4/getListthucpham');
       setthucpham(response.data);
       setIsLoading(false);
     } catch (error) {

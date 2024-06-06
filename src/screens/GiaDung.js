@@ -11,7 +11,7 @@ const GiaDung = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.55.104:3002/api2/getListgiadung');
+      const response = await axios.get('http://192.168.53.100:3002/api2/getListgiadung');
       setgiadung(response.data);
       setIsLoading(false);
     } catch (error) {
