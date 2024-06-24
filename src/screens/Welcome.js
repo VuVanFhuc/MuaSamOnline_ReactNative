@@ -17,7 +17,7 @@ const Welcome = () => {
 
     return (
         <View>
-            <Image source={require('../images/wel.jpg')} style={styles.anhnen}/>
+            <Image source={require('../images/avatar.png')} style={styles.anhnen}/>
         </View>
     );
 }
@@ -26,18 +26,10 @@ export default Welcome;
 
 const styles = StyleSheet.create({
     anhnen: {
-        width: "100%",
-        height: "100%",
-
-    },
-    anhlogo: {
         width: 100,
         height: 100,
-        marginTop: 150,
-        marginLeft: 150,
-        borderRadius: 100,
-        borderWidth: 2,
-        borderColor: "#fff",
-        backgroundColor: "#fff"
-    }
+        borderRadius:20,
+        alignSelf:"center",
+        marginTop:400,
+    },
 });

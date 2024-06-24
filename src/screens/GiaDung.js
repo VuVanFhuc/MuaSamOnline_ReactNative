@@ -11,7 +11,7 @@ const GiaDung = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3002/api2/getListgiadung');
+      const response = await axios.get('http://10.0.2.2:3002/api2/getListgiadung');
       setgiadung(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '45%',
     height: 200,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
   },
   productImage: {
     width: 150,

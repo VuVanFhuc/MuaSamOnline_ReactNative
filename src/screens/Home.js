@@ -48,8 +48,8 @@ const Home = () => {
 
   const fetchSanPham = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
-      const responsee = await axios.get('http://192.168.53.100:3001/api1/getListthoitrang');
+      const response = await axios.get('http://10.0.2.2:3000/api/getListSanPham');
+      const responsee = await axios.get('http://10.0.2.2:3001/api1/getListthoitrang');
       const combinedProducts = [...response.data, ...responsee.data];
       setSanPham(combinedProducts);
       setIsLoading(false);
@@ -94,13 +94,14 @@ const Home = () => {
       <View style={styles.header}>
         <TextInput placeholder="Tìm kiếm tại đây" style={styles.searchInput} />
         <Pressable onPress={tinnhan}>
-          <Image source={require('../images/botchat.png')} style={styles.micIcon} />
+          <Image source={require('../images/chat.png')} style={styles.micIcon} />
         </Pressable>
       </View>
       {/* BANNER TỰ ĐỘNG Ở ĐÂY */}
       <View>
         <Banner />
       </View>
+      <Text style={styles.productsTitle1}>Loại Sản Phẩm</Text>
       {/* Danh sách menu */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageList}>
         {listAnh.map((item) => (
@@ -132,7 +133,6 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor:"#f38020"
   },
   searchInput: {
     flex: 1,
@@ -168,7 +168,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#f38020',
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: 'left',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 3
+  },
+  productsTitle1: {
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft:10,
+    fontWeight: 'bold',
+    color: 'red',
+    marginBottom: 10,
+    textAlign: 'left',
     textShadowColor: '#000',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 3
@@ -182,6 +194,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '45%',
     height: 200,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
   },
   productImage: {
     width: 150,

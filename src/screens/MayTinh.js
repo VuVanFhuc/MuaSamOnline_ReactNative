@@ -11,7 +11,7 @@ const MayTinh = () => {
   
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3000/api/getListSanPham');
+      const response = await axios.get('http://10.0.2.2:3000/api/getListSanPham');
       setSanPham(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -22,8 +22,6 @@ const MayTinh = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-
 
   const renderProductRows = () => {
     const rows = [];
@@ -39,7 +37,7 @@ const MayTinh = () => {
               <Text style={styles.productName}>{item.ten}</Text>
               <Text style={{ fontStyle: 'italic' }}>{item.price}</Text>
               <View>
-              <BottonAdd item={item} />
+                <BottonAdd item={item} />
               </View>
             </View>
           ))}
@@ -57,7 +55,7 @@ const MayTinh = () => {
       <View>
         <Banner/>
       </View>
-      <Text style={styles.productsTitle}>SẢN PHẨM MÁY TÍNH </Text>
+      <Text style={styles.productsTitle}>SẢN PHẨM MÁY TÍNH</Text>
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#f38020',
-    textAlign: "center"
+    textAlign: 'center',
   },
   productRow: {
     flexDirection: 'row',
@@ -94,6 +92,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '45%',
     height: 200,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
   },
   productImage: {
     width: 150,

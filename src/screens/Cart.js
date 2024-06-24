@@ -79,7 +79,15 @@ const styles = StyleSheet.create({
   },
   productItem: {
     flexDirection: "row",
-    margin: 20
+    marginTop: 20,
+    alignItems: 'center',
+    width: '100%',
+    height: 200,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
   },
   productImage: {
     width: 150,

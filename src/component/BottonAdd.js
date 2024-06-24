@@ -14,10 +14,10 @@ const BottonAdd = ({ item }) => {
   return (
     <Pressable onPress={clickadd} style={{ flexDirection: "row" }}>
       <View style={styles.container}>
-        <Text style={{ fontSize: 15, color: 'red' }}>Add</Text>
+        <Text style={{ fontSize: 15, color: 'red' }}></Text>
       </View>
       <View>
-        <Image source={require("../images/3.png")} style={{ width: 20, height: 20 }} />
+        <Image source={require("../images/giohang.png")} style={{ width: 20, height: 20 }} />
       </View>
     </Pressable>
   );

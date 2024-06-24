@@ -11,7 +11,7 @@ const ThucPham = () => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get('http://192.168.53.100:3004/api4/getListthucpham');
+      const response = await axios.get('http://10.0.2.2:3004/api4/getListthucpham');
       setthucpham(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -57,7 +57,7 @@ const ThucPham = () => {
       <View>
         <Banner/>
       </View>
-      <Text style={styles.productsTitle}>SẢN PHẨM THỜI TRANG </Text>
+      <Text style={styles.productsTitle}>SẢN PHẨM THỰC PHẨM </Text>
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '45%',
     height: 200,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
   },
   productImage: {
     width: 150,

@@ -21,7 +21,6 @@ const ProductModal = () => {
     const handleOrder = () => {
         dispatch(clearSelectedItem());
         Alert.alert("Order Success", `Payment Method: ${paymentMethod}`);
-
     };
 
     const handleQuantityChange = (text) => {
@@ -54,62 +53,59 @@ const ProductModal = () => {
         >
             <View style={styles.modalBackground}>
                 <View style={styles.modalContainer}>
-                    <Image source={{ uri: selectedItem.hinhanh }} style={styles.productImage} />
-                    <Text style={styles.productName}>{selectedItem.ten}</Text>
-                    <Text style={styles.productPrice}>{`Giá: ${selectedItem.price}`}VND</Text>
-                    <ScrollView>
+                    <ScrollView contentContainerStyle={styles.scrollContainer}>
+                        <Image source={{ uri: selectedItem.hinhanh }} style={styles.productImage} />
+                        <Text style={styles.productName}>{selectedItem.ten}</Text>
+                        <Text style={styles.productPrice}>{`Giá: ${selectedItem.price} VND`}</Text>
                         <Text style={styles.productName}>Mô tả : {selectedItem.mota}</Text>
+                        <Text style={styles.paymentMethodLabel}>Phương thức thanh toán:</Text>
+                        <View style={styles.radioContainer}>
+                            <View style={styles.radioButton}>
+                                <Pressable onPress={() => setPaymentMethod('Cash on Delivery')}>
+                                    <View style={paymentMethod === 'Cash on Delivery' ? styles.radioSelected : styles.radioUnselected} />
+                                </Pressable>
+                                <Text style={styles.radioText}>Cash on Delivery</Text>
+                            </View>
+                            <View style={styles.radioButton}>
+                                <Pressable onPress={() => setPaymentMethod('Pay Now')}>
+                                    <View style={paymentMethod === 'Pay Now' ? styles.radioSelected : styles.radioUnselected} />
+                                </Pressable>
+                                <Text style={styles.radioText}>Pay Now</Text>
+                            </View>
+                        </View>
+
+                        <Text style={styles.paymentMethodLabel1}>Số lượng:</Text>
+                        <View style={styles.quantityContainer}>
+                            <Pressable style={styles.quantityButton} onPress={decrementQuantity}>
+                                <Text style={styles.quantityButtonText}>-</Text>
+                            </Pressable>
+                            <TextInput
+                                style={styles.quantityInput}
+                                keyboardType="numeric"
+                                value={String(quantity)}
+                                onChangeText={handleQuantityChange}
+                            />
+                            <Pressable style={styles.quantityButton} onPress={incrementQuantity}>
+                                <Text style={styles.quantityButtonText}>+</Text>
+                            </Pressable>
+                        </View>
+                        <Text style={styles.totalPrice}>{`Tổng tiền: ${totalPrice} VND`}</Text>
+                        <View style={{ width: "100%", height: 1, backgroundColor: "#f38020" }} />
+                        <View style={{ flexDirection: "row" }}>
+                            <Pressable
+                                style={styles.cancelButton}
+                                onPress={handleCancel}
+                            >
+                                <Text style={styles.cancelButtonText}>Hủy</Text>
+                            </Pressable>
+                            <Pressable
+                                style={styles.orderButton}
+                                onPress={handleOrder}
+                            >
+                                <Text style={styles.orderButtonText}>Đặt hàng</Text>
+                            </Pressable>
+                        </View>
                     </ScrollView>
-                    <Text style={styles.paymentMethodLabel}>Phương thức thanh toán:</Text>
-                    <View style={styles.radioContainer}>
-                        <View style={styles.radioButton}>
-                            <Pressable onPress={() => setPaymentMethod('Cash on Delivery')}>
-                                <View style={paymentMethod === 'Cash on Delivery' ? styles.radioSelected : styles.radioUnselected} />
-                            </Pressable>
-                            <Text style={styles.radioText}>Cash on Delivery</Text>
-                        </View>
-                        <View style={styles.radioButton}>
-                            <Pressable onPress={() => setPaymentMethod('Pay Now')}>
-                                <View style={paymentMethod === 'Pay Now' ? styles.radioSelected : styles.radioUnselected} />
-                            </Pressable>
-                            <Text style={styles.radioText}>Pay Now</Text>
-
-                        </View>
-                    </View>
-
-                    <Text style={styles.paymentMethodLabel1}>Số lượng:</Text>
-                    <View style={styles.quantityContainer}>
-                        <Pressable style={styles.quantityButton} onPress={decrementQuantity}>
-                            <Text style={styles.quantityButtonText}>-</Text>
-                        </Pressable>
-                        <TextInput
-                            style={styles.quantityInput}
-                            keyboardType="numeric"
-                            value={String(quantity)}
-                            onChangeText={handleQuantityChange}
-                        />
-                        <Pressable style={styles.quantityButton} onPress={incrementQuantity}>
-                            <Text style={styles.quantityButtonText}>+</Text>
-                        </Pressable>
-                    </View>
-                    <Text style={styles.totalPrice}>{`Tổng tiền: ${totalPrice}`}VND</Text>
-                    <View style={{ width: "100%", height: 1, backgroundColor: "#f38020" }} />
-                    <View style={{ flexDirection: "row" }}>
-                        <Pressable
-                            style={styles.cancelButton}
-                            onPress={handleCancel}
-                        >
-                            <Text style={styles.cancelButtonText}>Hủy</Text>
-                        </Pressable>
-                        <Pressable
-                            style={styles.orderButton}
-                            onPress={handleOrder}
-                        >
-                            <Text style={styles.orderButtonText}>Đặt hàng</Text>
-                        </Pressable>
-                    </View>
-                    
-
                 </View>
             </View>
         </Modal>
@@ -124,11 +120,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     modalContainer: {
-        width: "90%",
-        height: "90%",
+        width: "100%",
+        height: "100%",
         padding: 20,
         backgroundColor: 'white',
         borderRadius: 10,
+        alignItems: 'center',
+    },
+    scrollContainer: {
         alignItems: 'center',
     },
     productImage: {
@@ -224,7 +223,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginVertical: 10,
         height: 50,
-        width: 100
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     orderButtonText: {
         color: 'white',
@@ -237,7 +238,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginVertical: 10,
         height: 50,
-        width: 100
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     cancelButtonText: {
         color: 'black',

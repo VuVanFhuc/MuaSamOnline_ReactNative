@@ -1,0 +1,125 @@
+{
+  "taikhoan": [
+    {
+      "email": "admin@gmail.com",
+      "password": "123",
+      "id": "a091"
+    },
+    {
+      "email": "phuc@gmail.com",
+      "password": "123",
+      "id": "1e8f"
+    },
+    {
+      "id": "4366",
+      "email": "manh@gmail.com",
+      "password": "123"
+    }
+  ],
+  "inputGPT": [
+    {
+      "id": "0",
+      "input": ""
+    },
+    {
+      "id": "f444",
+      "input": "Hhh"
+    },
+    {
+      "id": "3111",
+      "input": "Huhu"
+    },
+    {
+      "id": "0c99",
+      "input": "hhh"
+    },
+    {
+      "id": "99a4",
+      "input": "Kkk"
+    },
+    {
+      "id": "3cf7",
+      "input": "Kkk"
+    },
+    {
+      "id": "e5a3",
+      "input": "sasa"
+    },
+    {
+      "id": "74e1",
+      "input": "Kkk"
+    },
+    {
+      "id": "2c1b",
+      "input": "Hhhhhhhhh"
+    },
+    {
+      "id": "f19c",
+      "input": "Kkk"
+    },
+    {
+      "id": "f292",
+      "input": "K"
+    },
+    {
+      "id": "cc15",
+      "input": "sasa"
+    },
+    {
+      "id": "94a0",
+      "input": "toi dang cuoi ban"
+    },
+    {
+      "id": "9763",
+      "input": "O"
+    },
+    {
+      "id": "8cf1",
+      "input": "L"
+    },
+    {
+      "id": "cbc3",
+      "input": "K"
+    },
+    {
+      "id": "c9cb",
+      "input": "Oo"
+    },
+    {
+      "id": "7c86",
+      "input": "Lll"
+    },
+    {
+      "id": "c3ef",
+      "input": "Phuc ne"
+    },
+    {
+      "id": "95d2",
+      "input": "O"
+    },
+    {
+      "id": "c757",
+      "input": "K"
+    },
+    {
+      "id": "333a",
+      "input": "Uuu"
+    },
+    {
+      "id": "0878",
+      "input": "J"
+    },
+    {
+      "id": "ec63",
+      "input": "Hhgsgasf"
+    },
+    {
+      "id": "a464",
+      "input": "sasfafs"
+    },
+    {
+      "id": "10a0",
+      "input": "sagsfags"
+    }
+  ]
+}
