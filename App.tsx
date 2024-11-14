@@ -1,118 +1,87 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from "react";
+import { StyleSheet, Image } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from 'react-redux';
+import { store } from './src/store'; 
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import Home from "./src/screens/Home";
+import Cart from "./src/screens/Cart";
+import Profile from "./src/screens/Profile";
+import Welcome from "./src/screens/Welcome";
+import Login from "./src/screens/Login";
+import Register from "./src/screens/Register";
+import Chat from "./src/screens/Chat";
+import ThoiTrang from "./src/screens/ThoiTrang";
+import MayTinh from "./src/screens/MayTinh";
+import GiaDung from "./src/screens/GiaDung";
+import DienThoai from "./src/screens/DienThoai";
+import ThucPham from "./src/screens/ThucPham";
+import Video from "./src/screens/Video";
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const TabNavigator = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          if (route.name === "Home") {
+            console.log(" icon Home ");
+            return <Image style={styles.icon} source={require('./src/images/1.png')} />;
+          } else if (route.name === "Video") {
+            console.log(" icon Video ");
+            return <Image style={styles.icon} source={require('./src/images/video.png')} />;
+          } else if (route.name === "Cart") {
+            console.log(" icon Cart ");
+            return <Image style={styles.icon} source={require('./src/images/3.png')} />;
+          } else if (route.name === "Profile") {
+            console.log(" icon Profile ");
+            return <Image style={styles.icon} source={require('./src/images/0.png')} />;
+          }
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name="Video" component={Video} options={{ headerShown: false }} />
+      <Tab.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+    </Tab.Navigator>
   );
-}
+};
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+const App = () => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+          <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+          <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+          <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+          <Stack.Screen name="MayTinh" component={MayTinh} options={{ headerShown: false }} />
+          <Stack.Screen name="ThoiTrang" component={ThoiTrang} options={{ headerShown: false }} />
+          <Stack.Screen name="GiaDung" component={GiaDung} options={{ headerShown: false }} />
+          <Stack.Screen name="DienThoai" component={DienThoai} options={{ headerShown: false }} />
+          <Stack.Screen name="ThucPham" component={ThucPham} options={{ headerShown: false }} />
+          <Stack.Screen name="Video" component={Video} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    tintColor: 'black',
+  },
+});
